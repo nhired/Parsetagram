@@ -13,9 +13,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="62dp"
+        android:hint="Username"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         tools:layout_editor_absoluteX="76dp"
         tools:layout_editor_absoluteY="62dp" />
 
@@ -28,7 +28,7 @@
         android:layout_marginTop="137dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="Password"
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="148dp" />
 

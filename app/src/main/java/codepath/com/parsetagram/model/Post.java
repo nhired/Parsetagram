@@ -18,6 +18,7 @@ public class Post extends ParseObject {
     }
 
 
+
     public String getDescription() {
         return getString(KEY_DESCRIPTION);
     }
