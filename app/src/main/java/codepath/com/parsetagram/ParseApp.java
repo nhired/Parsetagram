@@ -9,6 +9,7 @@ import com.parse.SignUpCallback;
 
 import codepath.com.parsetagram.model.Post;
 
+//This class enables the configuration to the parse server
 public class ParseApp extends Application {
     @Override
     public void onCreate() {

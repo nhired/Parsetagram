@@ -4,50 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/userName_in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="289dp"
+        android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="62dp"
-        android:hint="Username"
+        android:layout_marginTop="150dp"
+        android:color="#50FFFFFF"
         android:ems="10"
+        android:hint="Username"
         android:inputType="textPersonName"
+        android:textColor="#ffffff"
         tools:layout_editor_absoluteX="76dp"
         tools:layout_editor_absoluteY="62dp" />
 
     <EditText
         android:id="@+id/password_in"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_width="293dp"
+        android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="137dp"
+        android:layout_marginTop="215dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Password"
+        android:inputType="textPersonName"
+        android:textColor="#ffffff"
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="148dp" />
 
+
     <Button
         android:id="@+id/login_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="LOGIN"
-        tools:layout_editor_absoluteX="132dp"
-        tools:layout_editor_absoluteY="231dp" />
+        android:layout_width="296dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="208dp"
+        android:layout_below="@+id/password_in"
+        android:background="@drawable/lighter_bck"
+        android:text="Login"
+        android:textColor="#ffffff"
+        android:textSize="12sp" />
 
     <Button
         android:id="@+id/signUp_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/lighter_bck"
+        android:layout_alignParentEnd="true"
+        android:shadowColor="#50FFFFFF"
+        android:text="Don't have an account? Sign Up"
+        android:textColor="#ffffff"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/Parstagram"
+        android:layout_width="292dp"
+        android:layout_height="61dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="173dp"
-        android:text="SIGNUP" />
+        android:layout_marginTop="55dp"
+        android:fontFamily="@font/dancing_script_bold"
+        android:gravity="center"
+        android:text="Parstagram"
+        android:textColor="#ffffff"
+        android:textSize="40sp" />
 
 </RelativeLayout>

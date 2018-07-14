@@ -6,18 +6,22 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @ParseClassName("Post")
 public class Post extends ParseObject {
     private static final String KEY_DESCRIPTION = "description";
     private static final String KEY_IMAGE = "image";
     private static final String KEY_USER = "user";
     private static final String KEY_OBJECT_ID = "objectId";
+    private static final String KEY_CREATED_AT = "createdAt";
+    private static final String KEY_PROFILE_IMG = "profileImg";
 
     public Post() {
         super();
     }
-
-
+    ParseUser user;
 
     public String getDescription() {
         return getString(KEY_DESCRIPTION);
@@ -44,6 +48,14 @@ public class Post extends ParseObject {
     }
 
     public  String getKeyObjectId() { return  KEY_OBJECT_ID;
+    }
+
+    public void setProfileImage(ParseFile img) {
+        put(KEY_PROFILE_IMG, img);
+    }
+
+    public Date getDate() {
+        return getDate(KEY_CREATED_AT);
     }
 
     public static class Query extends ParseQuery<Post> {

@@ -1,6 +1,8 @@
 package codepath.com.parsetagram;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +15,8 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
+
+//This activity sets the layout for logging in and signing up to parstagram
 public class MainActivity extends AppCompatActivity {
     private EditText userNameInput;
     private EditText passwordInput;
@@ -29,10 +33,14 @@ public class MainActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.login_btn);
         signUpBtn = findViewById(R.id.signUp_btn);
 
+        userNameInput.setHintTextColor(Color.WHITE);
+        passwordInput.setHintTextColor(Color.WHITE);
+
+
         ParseUser currentUser = ParseUser.getCurrentUser();
 
         if (currentUser != null) {
-            final Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            final Intent intent = new Intent(MainActivity.this, FeedActivity.class);
             startActivity(intent);
             finish();
         } else {
@@ -48,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 signUp();
@@ -66,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             public void done(ParseUser user, ParseException e) {
                 if(e == null) {
                     Log.d("LoginActivity", "Login Successful");
-                    final Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    final Intent intent = new Intent(MainActivity.this, FeedActivity.class);
                     startActivity(intent);
                     finish();
 
@@ -84,13 +91,12 @@ public class MainActivity extends AppCompatActivity {
         user.setUsername(userNameInput.getText().toString());
         user.setPassword(passwordInput.getText().toString());
 
-
         user.signUpInBackground(new SignUpCallback() {
             @Override
             public void done(ParseException e) {
                 if (e == null) {
                     Log.d("SignUpActivity", "Sign Up Successful");
-                    final Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    final Intent intent = new Intent(MainActivity.this, FeedActivity.class);
                     startActivity(intent);
                     finish();
 

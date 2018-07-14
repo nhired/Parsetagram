@@ -1,5 +1,6 @@
 package codepath.com.parsetagram;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,71 +13,56 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.parse.ParseException;
+import com.bumptech.glide.request.target.Target;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 
-import codepath.com.parsetagram.model.Post;
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
-//This class enables the camera to be launched in order to create a new parstagram post
+//This class enables the camera to be launched in order to create a new profile picture
 //this class also sends the data to the parse sever
-public class NewPost extends AppCompatActivity {
-
+public class NewProfilePic extends AppCompatActivity {
     public final String APP_TAG = "MyCustomApp";
     public final static int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 1034;
     public String photoFileName = "photo.jpg";
-    String objectId;
 
     File photoFile;
     private static File filesDir;
-    EditText text;
-    String caption;
     ParseFile parseFile;
 
-    Button postBtn;
-    Post post;
-
-
+    Button setPic;
+    ImageView image;
+    Context context;
+    //Post post;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_post);
-
-        View view = findViewById(R.id.homeView);
+        setContentView(R.layout.activity_new_profile_pic);
+        context = getApplicationContext();
+        View view = findViewById(R.id.profilePicView);
         filesDir = getApplicationContext().getFilesDir();
         onLaunchCamera(view);
 
-        text = findViewById(R.id.caption_id);
-
-
-        postBtn = findViewById(R.id.post_btn);
-        postBtn.setOnClickListener(new View.OnClickListener() {
+        setPic = findViewById(R.id.setProfileBtn);
+        setPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //get the post object id so I can be able to query it
-               Intent data = new Intent();
-                caption = text.getText().toString();
-              // data.putExtra("object_id", post.getObjectId());
+               createProfilePic(parseFile, ParseUser.getCurrentUser());
 
-               //get caption from edit text box to make it into a description
-
-               //data.putExtra("caption", text.getText().toString());
-
-               createPost(caption, parseFile, ParseUser.getCurrentUser());
-               setResult(RESULT_OK, data);
-               finish();
+                Intent i = new Intent(NewProfilePic.this, FeedActivity.class);
+               startActivity(i);
             }
         });
+
     }
+
 
     public void onLaunchCamera(View view) {
         // create Intent to take a picture and return control to the calling application
@@ -88,7 +74,7 @@ public class NewPost extends AppCompatActivity {
         // wrap File object into a content provider
         // required for API >= 24
         // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
-        Uri fileProvider = FileProvider.getUriForFile(NewPost.this, "com.codepath.fileprovider", photoFile);
+        Uri fileProvider = FileProvider.getUriForFile(NewProfilePic.this, "com.codepath.fileprovider", photoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
 
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
@@ -125,11 +111,11 @@ public class NewPost extends AppCompatActivity {
                 Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
                 // RESIZE BITMAP, see section below
                 // Load the taken image into a preview
-                ImageView ivPreview = (ImageView) findViewById(R.id.parsta_img);
+                ImageView ivPreview = (ImageView) findViewById(R.id.profilePic);
                 ivPreview.setImageBitmap(takenImage);
                 photoFile = persistImage(takenImage, "test");
 
-                 parseFile = new ParseFile(photoFile);
+                parseFile = new ParseFile(photoFile);
 
             } else { // Result was a failure
                 Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
@@ -153,27 +139,10 @@ public class NewPost extends AppCompatActivity {
         return imageFile;
     }
 
-    private void createPost( String description, ParseFile imageFile, ParseUser user) {
-        post = new Post();
-        post.setDescription(description);
-        System.out.println("caption: "+ description);
-        post.setImage(imageFile);
-        post.setUser(user);
-        objectId = post.getObjectId();
+    private void createProfilePic(ParseFile imageFile, ParseUser user) {
+       user.put("profilePic", imageFile);
 
-        post.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if(e == null) {
-                    Log.d("PostImage", "Post image successful");
-                } else {
-                    Log.e("PostImage", "Post image failed" );
-
-                }
-            }
-        });
-
-
+       user.saveInBackground();
 
     }
 }

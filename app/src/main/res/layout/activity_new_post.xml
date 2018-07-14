@@ -9,12 +9,11 @@
 
     <com.parse.ParseImageView
         android:id="@+id/parsta_img"
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_alignParentStart="true"
+        android:layout_width="342dp"
+        android:layout_height="205dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="61dp"
-        android:layout_alignParentLeft="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp" />
 
     <EditText
         android:id="@+id/caption_id"

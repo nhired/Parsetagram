@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -8,17 +7,79 @@
 
     <ImageView
         android:id="@+id/parstaImg_id"
-        android:layout_width="211dp"
-        android:layout_height="241dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/avatar_id"
         app:srcCompat="@color/colorPrimary" />
 
     <TextView
         android:id="@+id/pCaption_id"
-        android:layout_width="204dp"
-        android:layout_height="32dp"
-        android:layout_below="@id/parstaImg_id"
-        android:layout_alignStart="@id/parstaImg_id"
+        android:layout_width="203dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="13dp"
+        android:layout_below="@+id/secondLayout"
         android:text="TextView" />
+
+    <TextView
+        android:id="@+id/username_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/avatar_id"
+        android:layout_toEndOf="@+id/avatar_id"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/time_id"
+        android:layout_width="97dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/pCaption_id"
+        android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/avatar_id"
+        android:layout_width="53dp"
+        android:layout_height="47dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+    <RelativeLayout
+        android:id="@+id/secondLayout"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/parstaImg_id">
+
+        <ImageView
+            android:id="@+id/ic_comm"
+            android:layout_width="53dp"
+            android:layout_height="30dp"
+
+            app:srcCompat="@drawable/ic_comm" />
+
+        <ImageView
+            android:id="@+id/ic_like"
+            android:layout_width="53dp"
+            android:layout_height="30dp"
+            android:layout_toEndOf="@+id/ic_comm"
+            app:srcCompat="@drawable/ic_like" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="53dp"
+            android:layout_height="30dp"
+            android:layout_toEndOf="@+id/ic_like"
+            app:srcCompat="@drawable/ic_share" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="53dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@drawable/ic_save2" />
+
+    </RelativeLayout>
+
 </RelativeLayout>
