@@ -28,34 +28,9 @@ public class DetailsActivity extends AppCompatActivity {
         image = findViewById(R.id.dimg_id);
         caption = findViewById(R.id.dCaption_id);
         date = findViewById(R.id.time_id);
-        username = findViewById(R.id.username);
-        avatar = findViewById(R.id.avatar);
 
         caption.setText(getIntent().getStringExtra("caption"));
         date.setText(getIntent().getStringExtra("created_at").toString());
-
-        try {
-            username.setText(ParseUser.getCurrentUser().fetchIfNeeded().getUsername());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        ParseUser user = ParseUser.getCurrentUser();
-        String avi = null;
-        try {
-            avi = user.fetchIfNeeded().getParseFile("profilePic").getUrl();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        if(avi != null) {
-            GlideApp.with(this)
-                    .load(avi)
-                    .fitCenter()
-                    .override(100, Target.SIZE_ORIGINAL)
-                    .transform(new RoundedCornersTransformation(60, 0))
-                    .into(avatar);
-        }
 
 
         GlideApp.with(this)
